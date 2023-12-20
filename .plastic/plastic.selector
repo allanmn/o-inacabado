@@ -1,4 +1,0 @@
-repository "O Inacabado@allanneves@cloud"
-  path "/"
-    br "/main"
-    co "/main"
