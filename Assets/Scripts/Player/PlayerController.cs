@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,11 +11,31 @@ public class PlayerController : MonoBehaviour
 
     public bool waitForCameraBeReady = true;
 
+    public bool movePlayerAfterSpawn = true;
+
+    private bool spawned = false;
+
     private GameObject MainCamera;
+
+    public float cutsceneMoveSpeed = 2f;
+
+    private float cutsceneMoveDuration = 1f;
+
+    private Vector3 cutsceneStartPoint;
+    private Vector3 cutsceneEndPoint;
+    private float cutsceneStartTime = 0f;
+    private int indexCutsceneWaypoint;
+    private GameObject[] waypoints;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        Array.Reverse(waypoints);
+        indexCutsceneWaypoint = 0;
         if (!waitForCameraBeReady)
         {
             Spawn();
@@ -22,6 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             whenCameraReadyListen();
         }
+
     }
 
     void whenCameraReadyListen()
@@ -29,7 +52,6 @@ public class PlayerController : MonoBehaviour
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         CameraController cameraController = MainCamera.GetComponent<CameraController>();
         cameraController.CameraReadyEvent.AddListener(whenCameraReady);
-        Debug.Log("Adicionou Listener");
     }
 
     void whenCameraReady()
@@ -48,6 +70,13 @@ public class PlayerController : MonoBehaviour
                 transform.position = SpawnPoint.transform.position;
                 SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
                 renderer.sortingOrder = 1;
+                cutsceneStartPoint = transform.position;
+                cutsceneStartTime = Time.time;
+                if (waypoints.Length > 0)
+                {
+                    cutsceneEndPoint = waypoints[indexCutsceneWaypoint].transform.position;
+                }
+                spawned = true;
             }
         }
     }
@@ -55,6 +84,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (spawned && movePlayerAfterSpawn && waypoints.Length > 0)
+        {
+            movePlayerCutscene();
+        }
     }
+
+    void movePlayerCutscene()
+    {
+        var i = (Time.time - cutsceneStartTime) / cutsceneMoveDuration;
+        transform.position = Vector3.Lerp(cutsceneStartPoint, cutsceneEndPoint, i);
+
+        if (i >= 1)
+        {
+            cutsceneStartTime = Time.time;
+
+            indexCutsceneWaypoint++;
+            indexCutsceneWaypoint %= waypoints.Length;
+
+            if (indexCutsceneWaypoint == 0) {
+                movePlayerAfterSpawn = false;
+            }
+
+            cutsceneStartPoint = cutsceneEndPoint;
+            cutsceneEndPoint = waypoints[indexCutsceneWaypoint].transform.position;
+        }
+    }
+
 }

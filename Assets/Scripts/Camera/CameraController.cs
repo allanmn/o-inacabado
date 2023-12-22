@@ -8,16 +8,21 @@ public class CameraController : MonoBehaviour
 
     public GameObject initialObjectToGo;
 
-    private Vector3 offset = new Vector3(0f, 0f, -10f);
+    public Vector3 offset = new(0f, 3f, -10f);
 
     private bool isGoingToInitialObject = false;
 
-    private readonly float smoothTime = 1f;
+    private bool isFollowingPlayer = false;
+
+    public readonly float smoothTime = 1f;
     private Vector3 velocity = Vector3.zero;
+
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (initialObjectToGo != null)
         {
             isGoingToInitialObject = true;
@@ -32,16 +37,18 @@ public class CameraController : MonoBehaviour
             Vector3 targetPosition = initialObjectToGo.transform.position + offset;
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
-            Debug.Log("Me");
-            Debug.Log("X: " + transform.position.x + " Y: " + transform.position.y + " Z: " + transform.position.z);
-            Debug.Log("Target");
-            Debug.Log("X: " + targetPosition.x + " Y: " + targetPosition.y + " Z: " + targetPosition.z);
-
             if (Helpers.ArePositionsAlmostEqual(transform.position, targetPosition, 0.01f))
             {
                 isGoingToInitialObject = false;
                 CameraReadyEvent.Invoke();
+                velocity = Vector3.zero;
+                isFollowingPlayer = true;
             };
+        }
+
+        if (isFollowingPlayer == true) {
+            Vector3 targetPosition = player.transform.position + offset;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, .2f);
         }
     }
 }
