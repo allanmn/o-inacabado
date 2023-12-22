@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1199204699953335499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 902700642357651803}
+  - component: {fileID: 2691907039205169028}
+  m_Layer: 0
+  m_Name: ScriptsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &902700642357651803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199204699953335499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2691907039205169028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199204699953335499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf4677d4661e1145b01fd8bd2e410f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - sprite: {fileID: 21300000, guid: 1240abf4558b26248971bf4428a05465, type: 3}
+    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+  - sprite: {fileID: 21300000, guid: aecc494db7cb11340b2afcf20225db2a, type: 3}
+    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+  - sprite: {fileID: 21300000, guid: 72662e2b237180d449fd5ce86430d36c, type: 3}
+    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+  - sprite: {fileID: 21300000, guid: e367a355a213e6544915b5afd592753d, type: 3}
+    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+  - sprite: {fileID: 21300000, guid: 6ff4d027c0118a048b0ca85909f37074, type: 3}
+    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+  - sprite: {fileID: 21300000, guid: c6d73dca38bdc74409e7af64263a084d, type: 3}
+    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
