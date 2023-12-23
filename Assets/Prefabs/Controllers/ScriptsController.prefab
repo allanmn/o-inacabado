@@ -46,14 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - sprite: {fileID: 21300000, guid: 1240abf4558b26248971bf4428a05465, type: 3}
-    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+    deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
+    name: Booger
   - sprite: {fileID: 21300000, guid: aecc494db7cb11340b2afcf20225db2a, type: 3}
-    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+    deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
+    name: Hello
   - sprite: {fileID: 21300000, guid: 72662e2b237180d449fd5ce86430d36c, type: 3}
-    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+    deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
+    name: Angry Devil
   - sprite: {fileID: 21300000, guid: e367a355a213e6544915b5afd592753d, type: 3}
-    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+    deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
+    name: Dumb Devil
   - sprite: {fileID: 21300000, guid: 6ff4d027c0118a048b0ca85909f37074, type: 3}
-    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+    deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
+    name: Spooky
   - sprite: {fileID: 21300000, guid: c6d73dca38bdc74409e7af64263a084d, type: 3}
-    deathSprite: {fileID: 21300000, guid: 84b95ad81e1075042bfc073156aeb474, type: 3}
+    deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
+    name: Fatty

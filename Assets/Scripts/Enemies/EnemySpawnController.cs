@@ -32,9 +32,10 @@ public class EnemySpawnController : MonoBehaviour
     {
         var newEnemy = enemyPrefab;
         newEnemy.GetComponent<EnemyAttributes>().level = enemyLevel;
-        newEnemy.GetComponent<EnemyAttributes>().moveSpeed = enemyMoveSpeed;
         newEnemy.GetComponent<EnemyAttributes>().identifier = enemyIdentifier;
         newEnemy.GetComponent<SpriteRenderer>().sprite = enemiesList.enemies[enemyIdentifier].sprite;
+        newEnemy.GetComponent<EnemyAttributes>().deathSprite = enemiesList.enemies[enemyIdentifier].deathSprite;
+        newEnemy.GetComponent<SpriteRenderer>().name = enemiesList.enemies[enemyIdentifier].name;
         Instantiate(newEnemy, new Vector2(coordinates.x, coordinates.y), Quaternion.identity).transform.SetParent(GameObject.Find("EnemiesContainer").transform);
     }
 }

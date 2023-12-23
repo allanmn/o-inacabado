@@ -9,6 +9,8 @@ public class EnemiesListController : MonoBehaviour
     {
         public Sprite sprite;
         public Sprite deathSprite;
+
+        public string name;
     }
 
     public Enemy[] enemies;
