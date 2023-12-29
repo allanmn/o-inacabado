@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1199204699953335499
+--- !u!1 &341340365513547321
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 902700642357651803}
-  - component: {fileID: 2691907039205169028}
+  - component: {fileID: 6823897695338318694}
+  - component: {fileID: 4870712024591052443}
+  - component: {fileID: 8671794272613463780}
+  - component: {fileID: 604751519716979369}
   m_Layer: 0
-  m_Name: ScriptsController
+  m_Name: ScriptsController 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &902700642357651803
+--- !u!4 &6823897695338318694
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199204699953335499}
+  m_GameObject: {fileID: 341340365513547321}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2691907039205169028
+--- !u!114 &4870712024591052443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199204699953335499}
+  m_GameObject: {fileID: 341340365513547321}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf4677d4661e1145b01fd8bd2e410f3, type: 3}
@@ -63,3 +65,50 @@ MonoBehaviour:
   - sprite: {fileID: 21300000, guid: c6d73dca38bdc74409e7af64263a084d, type: 3}
     deathSprite: {fileID: 21300000, guid: 441a0e0d11a8f6a48ae102bdae098648, type: 3}
     name: Fatty
+--- !u!114 &8671794272613463780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341340365513547321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41aebac096d453f42aa79e667ced35a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - id: 1
+    hits: 20
+    probability: 10
+    name: Gold Rush
+    sprite: {fileID: 21300000, guid: 43cc8635d441336448c73cecccc84221, type: 3}
+  - id: 2
+    hits: 20
+    probability: 25
+    name: Venom Strike
+    sprite: {fileID: 21300000, guid: 0781df1b2cdd7514f95576de7d79b8e8, type: 3}
+  - id: 3
+    hits: 20
+    probability: 5
+    name: Shield
+    sprite: {fileID: 21300000, guid: cf2793aac18e8234cabb76acd63b9ac8, type: 3}
+  - id: 4
+    hits: 5
+    probability: 25
+    name: Bomb
+    sprite: {fileID: 21300000, guid: 763ae98025b9ff746818d50116f35a06, type: 3}
+--- !u!114 &604751519716979369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341340365513547321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b824223d455eb4cb7d987d0c319330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemEffect: 0
+  itemStanceStatus: 0
