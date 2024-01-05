@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: aecc494db7cb11340b2afcf20225db2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1240abf4558b26248971bf4428a05465, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   currentHealth: 0
   moveSpeed: 1
   currentMoveSpeed: 0
-  level: 2
-  identifier: 1
+  level: 1
+  identifier: 0
   experience: 0
   gold: 0
   name: 
