@@ -30,7 +30,7 @@ public class EnemySpawnController : MonoBehaviour
 
     public void SpawnEnemy(int enemyIdentifier, int enemyLevel, float enemyMoveSpeed, Vector2 coordinates)
     {
-        var newEnemy = enemyPrefab;
+        var newEnemy = Instantiate(enemyPrefab, new Vector2(coordinates.x, coordinates.y), Quaternion.identity);
 
         for (int i = 0; i <= 3; i++)
         {
@@ -42,7 +42,7 @@ public class EnemySpawnController : MonoBehaviour
         newEnemy.GetComponent<SpriteRenderer>().sprite = enemiesList.enemies[enemyIdentifier].sprite;
         newEnemy.GetComponent<EnemyAttributes>().deathSprite = enemiesList.enemies[enemyIdentifier].deathSprite;
         newEnemy.GetComponent<EnemyAttributes>().name = enemiesList.enemies[enemyIdentifier].name;
-        Instantiate(newEnemy, new Vector2(coordinates.x, coordinates.y), Quaternion.identity).transform.SetParent(GameObject.Find("EnemiesContainer").transform);
+        newEnemy.transform.SetParent(GameObject.Find("EnemiesContainer").transform);
         newEnemy.GetComponent<EnemyAttributes>().drops.Clear();
     }
 }
