@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4870712024591052443}
   - component: {fileID: 8671794272613463780}
   - component: {fileID: 604751519716979369}
+  - component: {fileID: 2684756422400475793}
   m_Layer: 0
   m_Name: ScriptsController 1
   m_TagString: Untagged
@@ -79,24 +80,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - id: 1
-    hits: 20
-    probability: 10
+    hits: 1
+    probability: 50
     name: Gold Rush
     sprite: {fileID: 21300000, guid: 43cc8635d441336448c73cecccc84221, type: 3}
   - id: 2
-    hits: 20
-    probability: 25
-    name: Venom Strike
+    hits: 1
+    probability: 50
+    name: Super Damage
     sprite: {fileID: 21300000, guid: 0781df1b2cdd7514f95576de7d79b8e8, type: 3}
   - id: 3
-    hits: 20
-    probability: 5
+    hits: 1
+    probability: 50
     name: Shield
     sprite: {fileID: 21300000, guid: cf2793aac18e8234cabb76acd63b9ac8, type: 3}
   - id: 4
-    hits: 5
-    probability: 25
-    name: Bomb
+    hits: 1
+    probability: 50
+    name: Princess
     sprite: {fileID: 21300000, guid: 763ae98025b9ff746818d50116f35a06, type: 3}
 --- !u!114 &604751519716979369
 MonoBehaviour:
@@ -112,3 +113,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemEffect: 0
   itemStanceStatus: 0
+  damage: 1
+  currentDamage: 1
+--- !u!114 &2684756422400475793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341340365513547321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c17a0e1f323b75418633cdb2eafaa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

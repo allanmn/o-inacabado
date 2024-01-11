@@ -20,31 +20,30 @@ public class EnemyAttributes : MonoBehaviour
     [SerializeField]
     new string name;
     [SerializeField]
+    public string named;
+    [SerializeField]
     bool isDead = false;
     [SerializeField]
     public List<int> drops;
 
     public Sprite deathSprite;
 
-    void Awake()
+    public void EnemyAttributesConstructor(int level)
     {
-        //TEST ITEM DROPS
-        // drops.Add(0);
-        // drops.Add(1);
-        // drops.Add(2);
-        // drops.Add(3);
-
-        playerAttributesController = GameObject.Find("ScriptsController").GetComponent<PlayerAttributesController>();
-
-        itemsList = GameObject.Find("ScriptsController").GetComponent<ItemsListController>();
-
-        uiController = GameObject.Find("UI").GetComponent<UIController>();
-
         gold = level * 2;
         maxHealth = level * 5;
         currentHealth = maxHealth;
         moveSpeed = level * 2;
         currentMoveSpeed = moveSpeed;
+    }
+
+    void Awake()
+    {
+        playerAttributesController = GameObject.Find("ScriptsController").GetComponent<PlayerAttributesController>();
+
+        itemsList = GameObject.Find("ScriptsController").GetComponent<ItemsListController>();
+
+        uiController = GameObject.Find("UI").GetComponent<UIController>();
     }
 
     private void Hit(int damage)
@@ -56,7 +55,7 @@ public class EnemyAttributes : MonoBehaviour
         }
     }
 
-    private void Death()
+    public void Death()
     {
         isDead = true;
         GetComponent<SpriteRenderer>().sprite = deathSprite;
@@ -100,7 +99,7 @@ public class EnemyAttributes : MonoBehaviour
         var newItem = itemPrefab;
         newItem.GetComponent<ItemAttributes>().hits = itemsList.items[itemIdentifier].hits;
         newItem.GetComponent<SpriteRenderer>().sprite = itemsList.items[itemIdentifier].sprite;
-        newItem.GetComponent<ItemAttributes>().identifier = itemIdentifier;
+        newItem.GetComponent<ItemAttributes>().identifier = itemIdentifier + 1;
         newItem.GetComponent<ItemAttributes>().name = itemsList.items[itemIdentifier].name;
         Instantiate(newItem, new Vector2(transform.position.x, transform.position.y), Quaternion.identity).transform.SetParent(GameObject.Find("ItemsContainer").transform);
     }
@@ -109,8 +108,15 @@ public class EnemyAttributes : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //SHOULD LOOK IN PLAYER CONTROLLER VARIABLES FOR THE VALUE
-            Hit(1);
+            if (playerAttributesController.itemStanceStatus && playerAttributesController.itemEffect == PlayerAttributesController.ItemEffect.SuperDamage)
+            {
+                Hit(playerAttributesController.currentDamage * 2);
+                Debug.Log("EXTRA SLASH DAMAGE");
+            }
+            else
+            {
+                Hit(playerAttributesController.currentDamage);
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawnController : MonoBehaviour
@@ -36,13 +37,12 @@ public class EnemySpawnController : MonoBehaviour
         {
             newEnemy.GetComponent<EnemyAttributes>().drops.Add(i);
         }
-
-        newEnemy.GetComponent<EnemyAttributes>().level = enemyLevel;
-        newEnemy.GetComponent<EnemyAttributes>().identifier = enemyIdentifier;
+        EnemyAttributes scp = newEnemy.GetComponent<EnemyAttributes>();
+        scp.EnemyAttributesConstructor(enemyLevel);
+        scp.identifier = enemyIdentifier;
+        scp.deathSprite = enemiesList.enemies[enemyIdentifier].deathSprite;
+        scp.name = enemiesList.enemies[enemyIdentifier].name;
         newEnemy.GetComponent<SpriteRenderer>().sprite = enemiesList.enemies[enemyIdentifier].sprite;
-        newEnemy.GetComponent<EnemyAttributes>().deathSprite = enemiesList.enemies[enemyIdentifier].deathSprite;
-        newEnemy.GetComponent<EnemyAttributes>().name = enemiesList.enemies[enemyIdentifier].name;
         newEnemy.transform.SetParent(GameObject.Find("EnemiesContainer").transform);
-        newEnemy.GetComponent<EnemyAttributes>().drops.Clear();
     }
 }

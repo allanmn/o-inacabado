@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class ItemAttributes : MonoBehaviour
@@ -31,8 +32,15 @@ public class ItemAttributes : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //CHECK PLAYER DAMAGE
-            Hit(1);
+            if (playerAttributesController.itemStanceStatus && playerAttributesController.itemEffect == PlayerAttributesController.ItemEffect.SuperDamage)
+            {
+                Hit(playerAttributesController.currentDamage * 2);
+                Debug.Log("EXTRA SLASH DAMAGE");
+            }
+            else
+            {
+                Hit(playerAttributesController.currentDamage);
+            }
         }
     }
 
@@ -43,21 +51,32 @@ public class ItemAttributes : MonoBehaviour
         {
             isDestroyed = true;
             PickItem();
-            Debug.Log("PLAYER PICKED ITEM");
-        }
-        else
-        {
-            Debug.Log("PLAYER Hit ITEM ONCE - " + currentHits);
         }
     }
 
     private void PickItem()
     {
-        if (playerAttributesController.itemStanceStatus == false)
+        if (playerAttributesController.itemStanceStatus == false || identifier == 4)
         {
-            //HARDCODED GOLD RUSH
-            Debug.Log("GoldRush Activated");
-            playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.GoldRush);
+            Debug.Log("ENTERED STANCE MODE " + identifier);
+            switch (identifier)
+            {
+                case 1:
+                    playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.GoldRush);
+                    break;
+                case 2:
+                    playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.SuperDamage);
+                    break;
+                case 3:
+                    playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.Shield);
+                    break;
+                case 4:
+                    Time.timeScale = 0;
+                    SceneManager.LoadScene("InfiniteMode");
+                    Time.timeScale = 1;
+                    break;
+            }
+
         }
         else
         {

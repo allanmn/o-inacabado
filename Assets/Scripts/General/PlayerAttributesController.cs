@@ -13,7 +13,8 @@ public class PlayerAttributesController : MonoBehaviour
         None,
         GoldRush,
         SuperDamage,
-        DefenceMode
+        Shield,
+        Princess
     }
 
     [SerializeField]
@@ -23,6 +24,10 @@ public class PlayerAttributesController : MonoBehaviour
     public bool itemStanceStatus = false;
     private float itemEffectDurationTime = 5f;
 
+    public int damage = 1;
+
+    public int currentDamage = 1;
+
     void Awake()
     {
         uiController = GameObject.Find("UI").GetComponent<UIController>();
@@ -30,6 +35,7 @@ public class PlayerAttributesController : MonoBehaviour
 
     public void EnterItemStance(ItemEffect itemEffect)
     {
+        uiController.setItemMode(itemEffect.ToString());
         uiController.itemMode.SetActive(true);
         this.itemEffect = itemEffect;
         itemStanceStatus = true;

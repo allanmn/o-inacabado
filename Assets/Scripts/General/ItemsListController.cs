@@ -8,7 +8,6 @@ public class ItemsListController : MonoBehaviour
     public class Item
     {
         public int id;
-
         public int hits;
         public float probability;
         public string name;

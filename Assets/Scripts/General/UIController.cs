@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -20,5 +21,10 @@ public class UIController : MonoBehaviour
     {
         goldRun += gold;
         goldAmount.GetComponent<TMP_Text>().text = goldRun.ToString();
+    }
+
+    public void setItemMode(string itemMode)
+    {
+        this.itemMode.GetComponent<TMP_Text>().text = itemMode;
     }
 }
