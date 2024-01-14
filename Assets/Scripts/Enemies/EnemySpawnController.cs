@@ -32,13 +32,14 @@ public class EnemySpawnController : MonoBehaviour
     public void SpawnEnemy(int enemyIdentifier, int enemyLevel, float enemyMoveSpeed, Vector2 coordinates)
     {
         var newEnemy = Instantiate(enemyPrefab, new Vector2(coordinates.x, coordinates.y), Quaternion.identity);
+        EnemyAttributes scp = newEnemy.GetComponent<EnemyAttributes>();
+        scp.EnemyAttributesConstructor(enemyLevel);
 
         for (int i = 0; i <= 3; i++)
         {
-            newEnemy.GetComponent<EnemyAttributes>().drops.Add(i);
+            scp.drops.Add(i);
         }
-        EnemyAttributes scp = newEnemy.GetComponent<EnemyAttributes>();
-        scp.EnemyAttributesConstructor(enemyLevel);
+
         scp.identifier = enemyIdentifier;
         scp.deathSprite = enemiesList.enemies[enemyIdentifier].deathSprite;
         scp.name = enemiesList.enemies[enemyIdentifier].name;

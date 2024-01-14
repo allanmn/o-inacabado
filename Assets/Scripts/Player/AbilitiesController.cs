@@ -9,7 +9,7 @@ public class AbilitiesController : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<EnemyAttributes>().Death();
+            enemy.GetComponent<EnemyAttributes>().Destroy();
         }
     }
 

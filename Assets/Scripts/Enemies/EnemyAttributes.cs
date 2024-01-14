@@ -10,8 +10,9 @@ public class EnemyAttributes : MonoBehaviour
 
     UIController uiController;
 
-    [SerializeField]
-    GameObject itemPrefab;
+    [SerializeField] GameObject itemPrefab;
+
+    [SerializeField] GameObject healthBar;
 
     [SerializeField]
     float maxHealth, currentHealth, moveSpeed, currentMoveSpeed;
@@ -28,13 +29,23 @@ public class EnemyAttributes : MonoBehaviour
 
     public Sprite deathSprite;
 
+    AudioListController audioListController;
+
+    private IEnumerator enemyHitSoundTimer;
+    private bool isPlayingHitSound = false;
+    private float timeBetweenHits = .2f;
+
     public void EnemyAttributesConstructor(int level)
     {
+        audioListController = GameObject.Find("AudioController").GetComponent<AudioListController>();
+
         gold = level * 2;
         maxHealth = level * 5;
         currentHealth = maxHealth;
         moveSpeed = level * 2;
         currentMoveSpeed = moveSpeed;
+
+        healthBar.GetComponent<StatusBar>().SetStatusBar(currentHealth, maxHealth);
     }
 
     void Awake()
@@ -48,15 +59,30 @@ public class EnemyAttributes : MonoBehaviour
 
     private void Hit(int damage)
     {
+        if (!isPlayingHitSound)
+        {
+            isPlayingHitSound = true;
+            audioListController.effectsSource.PlayOneShot(audioListController.effects[Random.Range(6, 7)].audioclip);
+            StartCoroutine(EnemyHitSoundTimer(timeBetweenHits));
+        }
         currentHealth -= damage;
+        healthBar.GetComponent<StatusBar>().UpdateStatusBar(currentHealth);
         if (currentHealth <= 0 && !isDead)
         {
-            Death();
+            audioListController.effectsSource.PlayOneShot(audioListController.effects[5].audioclip, .5f);
+            Destroy();
         }
     }
 
-    public void Death()
+    IEnumerator EnemyHitSoundTimer(float timeBetweenHits)
     {
+        yield return new WaitForSeconds(timeBetweenHits);
+        isPlayingHitSound = false;
+    }
+
+    public void Destroy()
+    {
+        healthBar.SetActive(false);
         isDead = true;
         GetComponent<SpriteRenderer>().sprite = deathSprite;
         CheckItemsToDrop();
@@ -82,27 +108,22 @@ public class EnemyAttributes : MonoBehaviour
     {
         if (drops.Count > 0)
         {
-            //PICKS RANDOM ITEM
             var itemIdentifier = Random.Range(0, drops.Count);
             var dropRateCheck = Random.Range(0.0f, 1.1f);
 
             if (dropRateCheck <= (itemsList.items[itemIdentifier].probability / 100f))
             {
-                DropItem(itemIdentifier);
+                DropItem(itemIdentifier + 1);
             }
-
         }
     }
 
     private void DropItem(int itemIdentifier)
     {
-        //MUST INSTANTIATE BEFORE SET VARIABLES
-        var newItem = itemPrefab;
-        newItem.GetComponent<ItemAttributes>().hits = itemsList.items[itemIdentifier].hits;
-        newItem.GetComponent<SpriteRenderer>().sprite = itemsList.items[itemIdentifier].sprite;
-        newItem.GetComponent<ItemAttributes>().identifier = itemIdentifier + 1;
-        newItem.GetComponent<ItemAttributes>().name = itemsList.items[itemIdentifier].name;
-        Instantiate(newItem, new Vector2(transform.position.x, transform.position.y), Quaternion.identity).transform.SetParent(GameObject.Find("ItemsContainer").transform);
+        var newItem = Instantiate(itemPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        newItem.transform.SetParent(GameObject.Find("ItemsContainer").transform);
+        ItemAttributes scp = newItem.GetComponent<ItemAttributes>();
+        scp.ItemAttributesConstructor(itemIdentifier);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

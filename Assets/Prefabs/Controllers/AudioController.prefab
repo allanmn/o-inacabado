@@ -53,6 +53,10 @@ MonoBehaviour:
   - audioclip: {fileID: 8300000, guid: d6997d6f4e7dbad47a871ebb066641f8, type: 3}
   - audioclip: {fileID: 8300000, guid: 295512569ded84d45a7f5e95b5e10873, type: 3}
   - audioclip: {fileID: 8300000, guid: 42f93391eeba5424595c93d460706ba4, type: 3}
+  - audioclip: {fileID: 8300000, guid: ecc4b7f034bf91c4baa8aa90d1618502, type: 3}
+  - audioclip: {fileID: 8300000, guid: d77246033883d9d4eb3c6d76b0b6e2c0, type: 3}
+  - audioclip: {fileID: 8300000, guid: b3e7c95729c33fb4789c8b55b2746f1f, type: 3}
+  - audioclip: {fileID: 8300000, guid: dfba95abd239cc5438047d1187d4a02a, type: 3}
   music:
   - audioclip: {fileID: 8300000, guid: 34dd41fd309cf814ea7aef6d939ff07f, type: 3}
 --- !u!82 &3166432964132466208

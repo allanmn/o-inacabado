@@ -7,6 +7,7 @@ using UnityEngine;
 public class ItemAttributes : MonoBehaviour
 {
     PlayerAttributesController playerAttributesController;
+    ItemsListController itemsList;
 
     [SerializeField]
     public int identifier;
@@ -16,22 +17,47 @@ public class ItemAttributes : MonoBehaviour
     public bool isDestroyed = false;
     AudioListController audioListController;
 
-    void Awake()
+    private IEnumerator invulnerabilityTimer;
+    private bool isInvulnerable = true;
+    private float invulnerabilityTime = .25f;
+
+    public void ItemAttributesConstructor(int identifier)
     {
+        this.identifier = identifier;
+
+        itemsList = GameObject.Find("ScriptsController").GetComponent<ItemsListController>();
+
         audioListController = GameObject.Find("AudioController").GetComponent<AudioListController>();
+
         if (identifier == 4)
         {
-            audioListController.musicSource.PlayOneShot(audioListController.effects[2].audioclip);
+            audioListController.effectsSource.PlayOneShot(audioListController.effects[2].audioclip);
         }
         else
         {
-            audioListController.musicSource.PlayOneShot(audioListController.effects[0].audioclip);
+            audioListController.effectsSource.PlayOneShot(audioListController.effects[0].audioclip);
         }
 
+        hits = itemsList.items[identifier - 1].hits;
         currentHits = hits;
-        playerAttributesController = GameObject.Find("ScriptsController").GetComponent<PlayerAttributesController>();
 
+        GetComponent<SpriteRenderer>().sprite = itemsList.items[identifier - 1].sprite;
+        name = itemsList.items[identifier - 1].name;
+
+        playerAttributesController = GameObject.Find("ScriptsController").GetComponent<PlayerAttributesController>();
+    }
+
+    void Awake()
+    {
         SpawnForce();
+        invulnerabilityTimer = InvulnerabilityTimer(invulnerabilityTime);
+        StartCoroutine(invulnerabilityTimer);
+    }
+
+    IEnumerator InvulnerabilityTimer(float invulnerabilityTime)
+    {
+        yield return new WaitForSeconds(invulnerabilityTime);
+        isInvulnerable = false;
     }
 
     private void SpawnForce()
@@ -41,7 +67,7 @@ public class ItemAttributes : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isInvulnerable)
         {
             if (playerAttributesController.itemStanceStatus && playerAttributesController.itemEffect == PlayerAttributesController.ItemEffect.SuperDamage)
             {
@@ -61,7 +87,7 @@ public class ItemAttributes : MonoBehaviour
         if (currentHits <= 0 && !isDestroyed)
         {
             isDestroyed = true;
-            audioListController.musicSource.PlayOneShot(audioListController.effects[1].audioclip);
+            audioListController.effectsSource.PlayOneShot(audioListController.effects[1].audioclip);
             PickItem();
         }
     }

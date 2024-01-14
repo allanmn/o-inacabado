@@ -28,14 +28,4 @@ public class UIButtonsController : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-
-    public void ToggleCollectablesMenu()
-    {
-        GameObject.Find("Inventory").transform.Find("InventoryView").gameObject.SetActive(true);
-    }
-
-    public void BackButton()
-    {
-        // this.transform.parent.gameObject.SetActive(false);
-    }
 }
