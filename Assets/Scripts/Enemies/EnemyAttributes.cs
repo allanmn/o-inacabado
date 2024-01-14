@@ -96,6 +96,7 @@ public class EnemyAttributes : MonoBehaviour
 
     private void DropItem(int itemIdentifier)
     {
+        //MUST INSTANTIATE BEFORE SET VARIABLES
         var newItem = itemPrefab;
         newItem.GetComponent<ItemAttributes>().hits = itemsList.items[itemIdentifier].hits;
         newItem.GetComponent<SpriteRenderer>().sprite = itemsList.items[itemIdentifier].sprite;
