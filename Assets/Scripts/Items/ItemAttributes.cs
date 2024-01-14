@@ -14,9 +14,20 @@ public class ItemAttributes : MonoBehaviour
     public int hits, currentHits;
     [SerializeField]
     public bool isDestroyed = false;
+    AudioListController audioListController;
 
     void Awake()
     {
+        audioListController = GameObject.Find("AudioController").GetComponent<AudioListController>();
+        if (identifier == 4)
+        {
+            audioListController.musicSource.PlayOneShot(audioListController.effects[2].audioclip);
+        }
+        else
+        {
+            audioListController.musicSource.PlayOneShot(audioListController.effects[0].audioclip);
+        }
+
         currentHits = hits;
         playerAttributesController = GameObject.Find("ScriptsController").GetComponent<PlayerAttributesController>();
 
@@ -50,6 +61,7 @@ public class ItemAttributes : MonoBehaviour
         if (currentHits <= 0 && !isDestroyed)
         {
             isDestroyed = true;
+            audioListController.musicSource.PlayOneShot(audioListController.effects[1].audioclip);
             PickItem();
         }
     }

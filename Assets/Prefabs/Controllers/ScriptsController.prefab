@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6823897695338318694}
   - component: {fileID: 4870712024591052443}
   - component: {fileID: 8671794272613463780}
+  - component: {fileID: 2682865802283450932}
   - component: {fileID: 604751519716979369}
   - component: {fileID: 2684756422400475793}
   m_Layer: 0
-  m_Name: ScriptsController 1
+  m_Name: ScriptsController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,24 +82,57 @@ MonoBehaviour:
   items:
   - id: 1
     hits: 1
-    probability: 50
+    probability: 100
     name: Gold Rush
     sprite: {fileID: 21300000, guid: 43cc8635d441336448c73cecccc84221, type: 3}
   - id: 2
     hits: 1
-    probability: 50
+    probability: 100
     name: Super Damage
     sprite: {fileID: 21300000, guid: 0781df1b2cdd7514f95576de7d79b8e8, type: 3}
   - id: 3
     hits: 1
-    probability: 50
+    probability: 100
     name: Shield
     sprite: {fileID: 21300000, guid: cf2793aac18e8234cabb76acd63b9ac8, type: 3}
   - id: 4
     hits: 1
-    probability: 50
+    probability: 100
     name: Princess
-    sprite: {fileID: 21300000, guid: 763ae98025b9ff746818d50116f35a06, type: 3}
+    sprite: {fileID: 21300000, guid: 825fcbb607225be4b8e792887f0181dc, type: 3}
+--- !u!114 &2682865802283450932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341340365513547321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897e4a679f64c384f8fbdbf6cad94912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectables:
+  - id: 1
+    dropRate: 100
+    name: Goo
+    sprite: {fileID: 21300000, guid: e77dce23aa6b08a48b5a1455e7f23a26, type: 3}
+  - id: 2
+    dropRate: 50
+    name: Sword
+    sprite: {fileID: 21300000, guid: aed85d3c112859b4fa9ef35567ab1917, type: 3}
+  - id: 3
+    dropRate: 50
+    name: Iron
+    sprite: {fileID: 21300000, guid: 76b07d712665be74890c519dd6813867, type: 3}
+  - id: 4
+    dropRate: 50
+    name: Coal
+    sprite: {fileID: 21300000, guid: 45387bf9e2ec2304e96db13eb7605987, type: 3}
+  - id: 5
+    dropRate: 50
+    name: Algae
+    sprite: {fileID: 21300000, guid: e2dc93caf7c411842ba90b55cbf443e8, type: 3}
 --- !u!114 &604751519716979369
 MonoBehaviour:
   m_ObjectHideFlags: 0
