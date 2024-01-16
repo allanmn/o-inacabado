@@ -11,7 +11,7 @@ public class WeaponContainer : MonoBehaviour
 
     public GameObject itemPrice;
 
-    public Equipment equipment;
+    public OldEquipment equipment;
 
     public void SetupComponent()
     {

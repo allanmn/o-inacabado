@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/InitialScreen.unity
     guid: 54060818b5748244ebad22df7648a443
   - enabled: 1
-    path: Assets/Scenes/Menu/ForgeScreenOld.unity
+    path: Assets/Scenes/Menu/ForgeScreen.unity
     guid: f8de84b53b49c3842875f56d37a5d269
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity

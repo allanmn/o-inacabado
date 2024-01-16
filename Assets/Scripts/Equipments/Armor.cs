@@ -1,10 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
-public class Armor : Equipment
+public class Armor : MonoBehaviour
 {
-    public int lifePerLevel = 5;
+    public List<Stage> stages;
+
+    public int currentStageIndex;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (stages == null)
+        {
+            stages = new List<Stage>();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public Stage GetCurrentStage()
+    {
+        return stages[currentStageIndex];
+    }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ForgeItemsController : MonoBehaviour
 {
-    public List<Weapon> weapons;
+    public List<OldWeapon> weapons;
 
-    public List<Armor> armors;
+    public List<OldArmor> armors;
 
     public GameObject weaponContainerPrefab;
 
@@ -24,12 +24,12 @@ public class ForgeItemsController : MonoBehaviour
     {
         if (weapons == null)
         {
-            weapons = new List<Weapon>();
+            weapons = new List<OldWeapon>();
         }
 
         if (armors == null)
         {
-            armors = new List<Armor>();
+            armors = new List<OldArmor>();
         }
 
         if (containers == null)
@@ -62,7 +62,7 @@ public class ForgeItemsController : MonoBehaviour
     {
         if (selectedTab.type == TabButton.Type.Weapon)
         {
-            foreach (Weapon weapon in weapons)
+            foreach (OldWeapon weapon in weapons)
             {
                 GameObject listItem = (GameObject)PrefabUtility.InstantiatePrefab(weaponContainerPrefab);
 
@@ -83,7 +83,7 @@ public class ForgeItemsController : MonoBehaviour
             }
         } else if (selectedTab.type == TabButton.Type.Armor)
         {
-            foreach (Armor armor in armors)
+            foreach (OldArmor armor in armors)
             {
                 GameObject listItem = (GameObject)PrefabUtility.InstantiatePrefab(weaponContainerPrefab);
 
