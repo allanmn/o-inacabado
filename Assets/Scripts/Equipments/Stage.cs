@@ -10,10 +10,16 @@ public class Stage : MonoBehaviour
 
     public int goldPrice;
 
+    public List<CollectablePrice> collectables;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (collectables == null)
+        {
+            collectables = new List<CollectablePrice>();
+        }
     }
 
     // Update is called once per frame

@@ -10,12 +10,22 @@ public class ItemsController : MonoBehaviour
 
     public ItemSlider slider;
 
+    public PriceList priceList;
+
     // Start is called before the first frame update
     void Start()
     {
-        slider.itemsController = this;
+        if (priceList != null)
+        {
+            priceList.itemsController = this;
+        }
 
-        slider.SelectWeapon();
+        if (slider != null)
+        {
+            slider.itemsController = this;
+
+            slider.SelectWeapon();
+        }
     }
 
     // Update is called once per frame
@@ -24,5 +34,11 @@ public class ItemsController : MonoBehaviour
         
     }
 
-    
+    public void UpdatePriceList(string type)
+    {
+        if (priceList != null)
+        {
+            priceList.UpdateList(type);
+        }
+    }
 }

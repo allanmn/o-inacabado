@@ -24,6 +24,10 @@ public class SliderButton : MonoBehaviour
 
     private void UpdateImage(bool disabled)
     {
+        if (image == null) {
+            image = GetComponent<Image>();
+        }
+
         if (disabled)
         {
             image.sprite = disabledImage;

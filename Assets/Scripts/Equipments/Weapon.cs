@@ -29,4 +29,14 @@ public class Weapon : MonoBehaviour
     {
         return stages[currentStageIndex];
     }
+
+    public Stage GetNextStage()
+    {
+        if (stages.Count > currentStageIndex + 1)
+        {
+            return stages[currentStageIndex + 1];
+        }
+
+        return null;
+    }
 }
