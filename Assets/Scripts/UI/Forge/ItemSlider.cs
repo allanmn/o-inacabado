@@ -29,7 +29,7 @@ public class ItemSlider : MonoBehaviour
 
         SetSelectedImage(itemsController.weapon.GetCurrentStage().sprite);
 
-        itemsController.UpdatePriceList("weapon");
+        itemsController.UpdateData("weapon");
     }
 
     public void SelectArmor()
@@ -38,7 +38,7 @@ public class ItemSlider : MonoBehaviour
         armorButton.SetDisabled(true);
 
         SetSelectedImage(itemsController.armor.GetCurrentStage().sprite);
-        itemsController.UpdatePriceList("armor");
+        itemsController.UpdateData("armor");
     }
 
     private void SetSelectedImage(Sprite sprite)
