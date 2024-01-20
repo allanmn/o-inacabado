@@ -23,6 +23,10 @@ public class AnimationContainer : MonoBehaviour
 
         if (hammer != null)
         {
+            if (hammer.TryGetComponent<Animator>(out var animator)) {
+                animator.enabled = true;
+            }
+
             if (hammer.TryGetComponent<Fade>(out var component))
             {
                 component.fadeType = FadeAction.FadeIn;
@@ -48,11 +52,6 @@ public class AnimationContainer : MonoBehaviour
             {
                 component.fadeType = FadeAction.FadeOut;
                 component.fade = true;
-            }
-
-            if (hammer.TryGetComponent<Animator>(out var animator))
-            {
-                animator.enabled = false;
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class ItemsController : MonoBehaviour
 
     public TextMeshProUGUI upgradeChance;
 
-    public Modal upgradeModal;
+    public UpgradeModal upgradeModal;
 
     public UpgradeButton upgradeButton;
 
@@ -48,14 +49,15 @@ public class ItemsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TryToUpgrade()
     {
         if (upgradeModal != null)
         {
-            upgradeModal.Show();
+            upgradeModal.modal.Show();
+            animationContainer.ShowAnimation();
 
             StartCoroutine(waiter());
         }
@@ -68,6 +70,37 @@ public class ItemsController : MonoBehaviour
         if (animationContainer != null)
         {
             animationContainer.HideAnimation();
+
+            yield return new WaitForSeconds(.5f);
+
+            bool success = GetUpgradeResult();
+
+            upgradeModal.SetResult(success);
+        }
+    }
+
+    private bool GetUpgradeResult()
+    {
+        float percentChance = 0f;
+
+        if (selectedType == "armor")
+        {
+            percentChance = ((float)armor.GetNextStage().percentChance) / 100;
+        }
+        else if (selectedType == "weapon")
+        {
+            percentChance = ((float)weapon.GetNextStage().percentChance) / 100;
+        }
+
+        var random = Random.value;
+
+        if (random <= percentChance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -75,7 +108,8 @@ public class ItemsController : MonoBehaviour
     {
         selectedType = type;
 
-        if ((type == "armor" && armor.GetNextStage() == null) || (type == "weapon" && weapon.GetNextStage() == null)) {
+        if ((type == "armor" && armor.GetNextStage() == null) || (type == "weapon" && weapon.GetNextStage() == null))
+        {
             priceList.enabled = false;
             upgradeChance.enabled = false;
 
@@ -104,10 +138,26 @@ public class ItemsController : MonoBehaviour
             if (percentChance <= 30)
             {
                 upgradeChance.color = Color.red;
-            } else if (percentChance >= 70)
+            }
+            else if (percentChance >= 70)
             {
                 upgradeChance.color = Color.green;
             }
+        }
+    }
+
+    public void DimissModal()
+    {
+        if (upgradeModal != null)
+        {
+            upgradeModal.modal.Hide();
+            upgradeModal.resultText.gameObject.SetActive(false);
+            upgradeModal.button.gameObject.SetActive(false);
+        }
+
+        if (upgradeButton != null)
+        {
+            upgradeButton.SetEnabled(true);
         }
     }
 }

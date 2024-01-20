@@ -5,6 +5,7 @@ using UnityEngine;
 public class EquipmentManager : MonoBehaviour
 {
     public static EquipmentManager instance;
+    
     private void Awake()
     {
         if (instance == null)

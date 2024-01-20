@@ -23,10 +23,45 @@ public class Fade : MonoBehaviour
 
     public float maxAlpha = 1;
 
+    public float startingAlpha;
+
     public float fadeSpeed = 2;
+
+    private void OnEnable()
+    {
+        if (fadeType == FadeAction.FadeIn)
+        {
+
+            StartCoroutine(FadeIn());
+
+        }
+
+        else if (fadeType == FadeAction.FadeOut)
+        {
+
+            StartCoroutine(FadeOut());
+
+        }
+
+        else if (fadeType == FadeAction.FadeInAndOut)
+        {
+
+            StartCoroutine(FadeInAndOut());
+
+        }
+
+        else if (fadeType == FadeAction.FadeOutAndIn)
+        {
+
+            StartCoroutine(FadeOutAndIn());
+
+        }
+    }
 
     public void Start()
     {
+        startingAlpha = img.color.a;
+
         if (fadeType == FadeAction.FadeIn)
         {
 
@@ -70,6 +105,10 @@ public class Fade : MonoBehaviour
                 if (color.a <= 0)
                 {
                     fade = false;
+                    if (TryGetComponent<Animator>(out var animator))
+                    {
+                        animator.enabled = false;
+                    }
                 }
             }
         }
@@ -181,6 +220,4 @@ public class Fade : MonoBehaviour
             yield return null;
         }
     }
-
-
 }
