@@ -23,10 +23,9 @@ public class PlayerAttributesController : MonoBehaviour
     IEnumerator itemStanceTimer;
     public bool itemStanceStatus = false;
     private float itemEffectDurationTime = 5f;
-
     public int damage = 1;
-
     public int currentDamage = 1;
+    public int shieldHits = 5;
 
     void Awake()
     {

@@ -17,7 +17,7 @@ public class EnemyAttributes : MonoBehaviour
     [SerializeField]
     float maxHealth, currentHealth, moveSpeed, currentMoveSpeed;
     [SerializeField]
-    public int level, identifier, experience, gold;
+    public int level, identifier, experience, gold, damage;
     [SerializeField]
     new string name;
     [SerializeField]
@@ -44,6 +44,8 @@ public class EnemyAttributes : MonoBehaviour
         currentHealth = maxHealth;
         moveSpeed = level * 2;
         currentMoveSpeed = moveSpeed;
+        // damage = Random.Range(1, level);
+        damage = 1;
 
         healthBar.GetComponent<StatusBar>().SetStatusBar(currentHealth, maxHealth);
     }
