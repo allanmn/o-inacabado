@@ -8,6 +8,6 @@ public class Collectable : ScriptableObject
 {
     public int id;
     public int dropRate;
-    public string itemName;
+    public string collectableName;
     public Sprite sprite;
 }

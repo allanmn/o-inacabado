@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
 {
-    PlayerAttributesController playerAttributesController;
+    public PlayerAttributesController playerAttributesController;
     ItemsListController itemsList;
 
     UIController uiController;
@@ -59,7 +59,7 @@ public class EnemyAttributes : MonoBehaviour
         uiController = GameObject.Find("UI").GetComponent<UIController>();
     }
 
-    private void Hit(int damage)
+    public void Hit(int damage)
     {
         if (!isPlayingHitSound)
         {
