@@ -12,30 +12,53 @@ public class EnemyBase : MonoBehaviour
     public bool isImmune = false;
     AudioListController audioListController;
     private IEnumerator enemyHitSoundTimer;
+    public UIController uiController;
 
     void Start()
     {
+        uiController = GameObject.Find("UI").GetComponent<UIController>();
         audioListController = GameObject.Find("AudioController").GetComponent<AudioListController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
-    public void Hit(int damage)
+    public void Hit(Collider2D other, int damage)
     {
-        if (!isPlayingHitSound)
+
+        if (other.CompareTag("Player") && !isImmune)
         {
-            isPlayingHitSound = true;
-            audioListController.effectsSource.PlayOneShot(audioListController.effects[Random.Range(6, 7)].audioclip);
-            StartCoroutine(EnemyHitSoundTimer(timeBetweenHits));
+
+            if (!isPlayingHitSound)
+            {
+                isPlayingHitSound = true;
+                audioListController.effectsSource.PlayOneShot(audioListController.effects[Random.Range(6, 7)].audioclip);
+                StartCoroutine(EnemyHitSoundTimer(timeBetweenHits));
+            }
+            currentHealth -= damage;
+            // healthBar.GetComponent<StatusBar>().UpdateStatusBar(currentHealth);
+            if (currentHealth <= 0 && !isDestroyed)
+            {
+                audioListController.effectsSource.PlayOneShot(audioListController.effects[5].audioclip, .5f);
+                Destroy();
+            }
+
         }
-        currentHealth -= damage;
-        // healthBar.GetComponent<StatusBar>().UpdateStatusBar(currentHealth);
-        if (currentHealth <= 0 && !isDestroyed)
+    }
+
+    public void DamagePlayer(int damage)
+    {
+        uiController.DecreaseShieldHits(damage);
+    }
+
+    public void HitDestroyer(Collider2D other, int damage)
+    {
+        if (other.gameObject.CompareTag("Destroyer"))
         {
-            audioListController.effectsSource.PlayOneShot(audioListController.effects[5].audioclip, .5f);
+            DamagePlayer(damage);
             Destroy();
         }
     }

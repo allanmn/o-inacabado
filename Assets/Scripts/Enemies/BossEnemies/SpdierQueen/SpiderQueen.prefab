@@ -108,6 +108,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &3104389184397038879
 BoxCollider2D:
@@ -289,6 +290,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &6624145032534156363
 BoxCollider2D:
@@ -470,6 +472,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &1331857236034423264
 BoxCollider2D:
@@ -651,6 +654,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &4273524079197589223
 BoxCollider2D:
@@ -832,6 +836,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &5680838830647193653
 BoxCollider2D:
@@ -1013,6 +1018,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &2935047308187317556
 BoxCollider2D:
@@ -1241,7 +1247,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1274,8 +1280,11 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c6a682de37d46e245822430c5030e27b, type: 2}
+  egg: {fileID: 0}
   legs: []
+  stance: 0
 --- !u!1 &7840405730580590272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1393,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &8042867211171952135
 BoxCollider2D:
@@ -1565,6 +1575,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isDestroyed: 0
   isImmune: 0
+  uiController: {fileID: 0}
   enemy: {fileID: 11400000, guid: c4a418c240f00e64f9b43b0929b84c93, type: 2}
 --- !u!61 &13420340624611536
 BoxCollider2D:

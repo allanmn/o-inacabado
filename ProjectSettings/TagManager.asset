@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Item
   - ItemsController
+  - EnemySpecial
+  - Destroyer
   layers:
   - Default
   - TransparentFX

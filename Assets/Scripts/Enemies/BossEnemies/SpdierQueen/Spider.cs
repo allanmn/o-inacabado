@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderQueenLeg : EnemyBase
+public class Spider : EnemyBase
 {
     [SerializeField] Enemy enemy;
     void Awake()
@@ -14,19 +14,18 @@ public class SpiderQueenLeg : EnemyBase
         currentHealth = maxHealth;
         damage = enemy.damage;
         currentDamage = damage;
-        isImmune = true;
+        isImmune = false;
     }
 
     void Update()
     {
+        Movement();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isImmune)
-        {
-            Hit(1);
-            Debug.Log(currentHealth);
-        }
+        Hit(other, 1);
+        HitDestroyer(other, currentDamage);
+
     }
 }
