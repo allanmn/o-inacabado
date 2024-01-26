@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[System.Serializable]
 public class Stage : MonoBehaviour
 {
     public int valueToAdd;

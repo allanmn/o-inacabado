@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class ItemsController : MonoBehaviour
 
     public TextMeshProUGUI upgradeChance;
 
+    public TextMeshProUGUI maxLevelTxt;
+
     public UpgradeModal upgradeModal;
 
     public UpgradeButton upgradeButton;
@@ -25,12 +28,21 @@ public class ItemsController : MonoBehaviour
 
     private string selectedType = "weapon";
 
+    public ForgeData forgeData;
+
+    public GameObject loadingModal;
+
     // Start is called before the first frame update
     void Start()
     {
         if (priceList != null)
         {
             priceList.itemsController = this;
+        }
+
+        if (forgeData != null)
+        {
+            ForgeData.onLoadComplete += OnLoadComplete;
         }
 
         if (slider != null)
@@ -44,12 +56,6 @@ public class ItemsController : MonoBehaviour
         {
             upgradeButton.controller = this;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void TryToUpgrade()
@@ -75,7 +81,34 @@ public class ItemsController : MonoBehaviour
 
             bool success = GetUpgradeResult();
 
+            if (success)
+            {
+                if (selectedType == "weapon")
+                {
+                    weapon.currentStageIndex++;
+                }
+                else if (selectedType == "armor")
+                {
+                    armor.currentStageIndex++;
+                }
+            }
+            else
+            {
+                if (selectedType == "weapon")
+                {
+                    weapon.GetNextStage().percentChance += 5;
+                }
+                else if (selectedType == "armor")
+                {
+                    armor.GetNextStage().percentChance += 5;
+                }
+            }
+
             upgradeModal.SetResult(success);
+
+            UpdateData(selectedType);
+
+            forgeData.SaveData();
         }
     }
 
@@ -108,12 +141,25 @@ public class ItemsController : MonoBehaviour
     {
         selectedType = type;
 
+            if (slider != null)
+            {
+                slider.SetSelectedImage(selectedType == "armor" ? armor.GetCurrentStage().sprite : weapon.GetCurrentStage().sprite);
+            }
+
         if ((type == "armor" && armor.GetNextStage() == null) || (type == "weapon" && weapon.GetNextStage() == null))
         {
-            priceList.enabled = false;
+            priceList.gameObject.SetActive(false);
             upgradeChance.enabled = false;
+            upgradeButton.SetEnabled(false);
+            maxLevelTxt.gameObject.SetActive(true);
 
             return;
+        } else
+        {
+            priceList.gameObject.SetActive(true);
+            upgradeChance.enabled = true;
+            upgradeButton.SetEnabled(true);
+            maxLevelTxt.gameObject.SetActive(false);
         }
 
         if (priceList != null)
@@ -135,7 +181,11 @@ public class ItemsController : MonoBehaviour
 
             upgradeChance.text = percentChance + "%";
 
-            if (percentChance <= 30)
+            if (percentChance > 30 && percentChance < 70)
+            {
+                upgradeChance.color = Color.white;
+            }
+            else if (percentChance <= 30)
             {
                 upgradeChance.color = Color.red;
             }
@@ -159,5 +209,37 @@ public class ItemsController : MonoBehaviour
         {
             upgradeButton.SetEnabled(true);
         }
+    }
+
+    public void OnLoadComplete()
+    {
+        LoadData();
+
+        if (loadingModal != null)
+        {
+            loadingModal.SetActive(false);
+
+            slider.gameObject.SetActive(true);
+            priceList.transform.parent.gameObject.SetActive(true);
+            upgradeButton.transform.parent.gameObject.SetActive(true);
+        }
+    }
+
+    private void LoadData()
+    {
+        weapon.currentStageIndex = forgeData.data.weaponStageIndex;
+        armor.currentStageIndex = forgeData.data.armorStageIndex;
+
+        if (armor.GetNextStage() != null && forgeData.data.armorCurrentStageChance >= armor.GetNextStage().percentChance)
+        {
+            armor.GetNextStage().percentChance = forgeData.data.armorCurrentStageChance;
+        }
+
+        if (weapon.GetNextStage() != null && forgeData.data.weaponCurrentStageChance >= weapon.GetNextStage().percentChance)
+        {
+            weapon.GetNextStage().percentChance = forgeData.data.weaponCurrentStageChance;
+        }
+
+        UpdateData(selectedType);
     }
 }

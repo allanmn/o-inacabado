@@ -32,8 +32,11 @@ public class UpgradeButton : MonoBehaviour
 
     public void SetEnabled(bool enabled)
     {
-        button.enabled = enabled;
+        if (button)
+        {
+            button.interactable = enabled;
 
-        button.image.sprite = enabled ? idleSprite : disabledSprite;
+            button.image.sprite = enabled ? idleSprite : disabledSprite;
+        }
     }
 }

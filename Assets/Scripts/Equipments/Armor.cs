@@ -8,6 +8,8 @@ public class Armor : MonoBehaviour
 
     public int currentStageIndex;
 
+    public int totalDefense;
+
     // Start is called before the first frame update
     void Start()
     {

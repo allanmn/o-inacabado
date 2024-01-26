@@ -41,7 +41,7 @@ public class ItemSlider : MonoBehaviour
         itemsController.UpdateData("armor");
     }
 
-    private void SetSelectedImage(Sprite sprite)
+    public void SetSelectedImage(Sprite sprite)
     {
         if (selectedItemContainer != null && selectedItemContainer.TryGetComponent<Image>(out var image))
         {
