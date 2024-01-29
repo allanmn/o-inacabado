@@ -25,7 +25,7 @@ public class InventoryController : MonoBehaviour
         Transform collectablesListContainer = GameObject.Find("CollectablesList").transform;
 
         counter = 0;
-        foreach (CollectablesListController.Collectable collectable in collectablesList.collectables)
+        foreach (Collectable collectable in collectablesList.collectables)
         {
             var newCollectable = Instantiate(collectablePrefab, collectablesListContainer);
 

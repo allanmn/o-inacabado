@@ -8,6 +8,7 @@ public class ItemAttributes : MonoBehaviour
 {
     PlayerAttributesController playerAttributesController;
     ItemsListController itemsList;
+    UIController uiController;
 
     [SerializeField]
     public int identifier;
@@ -45,6 +46,8 @@ public class ItemAttributes : MonoBehaviour
         name = itemsList.items[identifier - 1].name;
 
         playerAttributesController = GameObject.Find("ScriptsController").GetComponent<PlayerAttributesController>();
+
+        uiController = GameObject.Find("UI").GetComponent<UIController>();
     }
 
     void Awake()
@@ -94,7 +97,7 @@ public class ItemAttributes : MonoBehaviour
 
     private void PickItem()
     {
-        if (playerAttributesController.itemStanceStatus == false || identifier == 4)
+        if (playerAttributesController.itemStanceStatus == false || identifier == 4 || identifier == 3)
         {
             Debug.Log("ENTERED STANCE MODE " + identifier);
             switch (identifier)
@@ -106,12 +109,11 @@ public class ItemAttributes : MonoBehaviour
                     playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.SuperDamage);
                     break;
                 case 3:
-                    playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.Shield);
+                    // playerAttributesController.EnterItemStance(PlayerAttributesController.ItemEffect.Shield);
+                    uiController.IncreaseShieldHits(1);
                     break;
                 case 4:
-                    Time.timeScale = 0;
-                    SceneManager.LoadScene("InfiniteMode");
-                    Time.timeScale = 1;
+                    uiController.GameOver();
                     break;
             }
 

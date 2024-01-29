@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class DestroyerController : MonoBehaviour
 {
+    UIController uiController;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        uiController = GameObject.Find("UI").GetComponent<UIController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Item"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            uiController.DecreaseShieldHits(collision.GetComponent<EnemyAttributes>().damage);
         }
+
+        Destroy(collision.gameObject);
     }
 }
