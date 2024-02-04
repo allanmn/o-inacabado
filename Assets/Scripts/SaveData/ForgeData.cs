@@ -4,9 +4,9 @@ using System.IO;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData
+public class ForgeSaveData
 {
-    public SaveData(int weaponStageIndex, int armorStageIndex, int armorCurrentStageChance, int weaponCurrentStageChance)
+    public ForgeSaveData(int weaponStageIndex, int armorStageIndex, int armorCurrentStageChance, int weaponCurrentStageChance)
     {
         this.weaponStageIndex = weaponStageIndex;
         this.armorStageIndex = armorStageIndex;
@@ -29,7 +29,7 @@ public class SaveData
 
 public class ForgeData : MonoBehaviour
 {
-    public SaveData data;
+    public ForgeSaveData data;
 
     public Weapon weapon;
 
@@ -60,7 +60,7 @@ public class ForgeData : MonoBehaviour
         {
             int armorChance = armor.GetNextStage() != null ? armor.GetNextStage().percentChance : 0;
             int weaponChance = weapon.GetNextStage() != null ? weapon.GetNextStage().percentChance : 0;
-            data = new SaveData(weapon.currentStageIndex, armor.currentStageIndex, weaponChance, armorChance);
+            data = new ForgeSaveData(weapon.currentStageIndex, armor.currentStageIndex, weaponChance, armorChance);
         }
 
         if (onLoadComplete != null)
@@ -92,7 +92,7 @@ public class ForgeData : MonoBehaviour
         int armorChance = armor.GetNextStage() != null ? armor.GetNextStage().percentChance : 0;
         int weaponChance = weapon.GetNextStage() != null ? weapon.GetNextStage().percentChance : 0;
 
-        data = new SaveData(weapon.currentStageIndex, armor.currentStageIndex, armorChance, weaponChance);
+        data = new ForgeSaveData(weapon.currentStageIndex, armor.currentStageIndex, armorChance, weaponChance);
 
         string json = JsonUtility.ToJson(data);
 
@@ -106,12 +106,12 @@ public class ForgeData : MonoBehaviour
         writer.Write(json);
     }
 
-    public SaveData LoadData()
+    public ForgeSaveData LoadData()
     {
         using StreamReader reader = new StreamReader(persistentPath + file);
         string json = reader.ReadToEnd();
 
-        data = JsonUtility.FromJson<SaveData>(json);
+        data = JsonUtility.FromJson<ForgeSaveData>(json);
 
         return data;
     }
